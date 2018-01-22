@@ -4,10 +4,11 @@
 'use strict';
 
 const store = (function () {
-  const foo = 'bar';
+  // const foo = 'bar';
 
+  // Part 1 of the refactoring process. 
   function findById (id) {
-    return store.items.find(function (item) {
+    return this.items.find(function (item) {
       if (id === item.id ) {
         return true;
       }
@@ -18,7 +19,7 @@ const store = (function () {
     try {
       Item.validateName(name);
       let newItem = Item.create(name);
-      store.items.push(newItem);
+      this.items.push(newItem);
     } catch (error) {
       console.log(`${error.message}`);
     }
@@ -43,11 +44,23 @@ const store = (function () {
     // 1. get the foundItem
     const foundItem = this.findById(id);
     //2. find the index of the item in the items array
-    const itemIndex = store.items.indexOf(foundItem);
+    const itemIndex = this.items.indexOf(foundItem);
     // 3. delete the foundItem using the splice method
-    store.items.splice(itemIndex, 1);
+    this.items.splice(itemIndex, 1);
   }
 
+  // Part 2 of our refactoring process
+  function toggleCheckedFilter () {
+    // Make a method in store called toggleCheckedFilter which toggles this.hideCheckedFilter prop
+
+    this.hideCheckedItems = !this.hideCheckedItems;
+  }
+
+  function setSearchTerm (val) {
+    // Make another store method called setSearchTerm which changes this.searchTerm to the first argument passed in
+    // Assign searchTerm to the first argument passed in.
+    this.searchTerm = arguments[0];
+  }
 
   return {
     items: [
@@ -62,7 +75,9 @@ const store = (function () {
     addItem,
     findAndToggleChecked,
     findAndUpdateName,
-    findAndDelete
+    findAndDelete,
+    toggleCheckedFilter,
+    setSearchTerm
   };
 
 }() );
