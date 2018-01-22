@@ -63,7 +63,7 @@ const shoppingList = (function(){
       store.items.push(newItem);
       console.log(store.items);
     } catch (error) {
-      console.log('Cannot add item: ${error.message}');
+      console.log(`Cannot add item: ${error.message}`);
     }
     // Old way of pushing items into the grocery list is below:
     // store.items.push({ id: cuid(), name: itemName, checked: false });
