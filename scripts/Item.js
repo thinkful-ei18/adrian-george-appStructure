@@ -1,31 +1,37 @@
 'use strict';
 
-const item = (function () {
-  const foo = 'bar';
+
+const Item = (function () {
+  // const foo = 'bar';
+
+  function validateName (name) {
+    // Makes sure we can't add items without a name.
+    if (!name) {
+      throw new TypeError ('Name does not exist');
+    }
+  }
+
+  function create (name) {
+    // The function should return a new item object with the following attributes:
+    // id - invoke cuid() to create a unique id
+    // name - the value of parameter name
+    // checked - defaults to false
+    // Testing out the method below:
+    // console.log('create method is running!');
+    return {
+      id: cuid(),
+      name: name,
+      checked: false
+    };
+  }
 
   return {
-    validateName(){},
-    create(){}
+    validateName,
+    create
   };
 
 }() );
 
-const validateName = function (name) {
-  // Makes sure we can't add items without a name.
-  return name ? ' ' : console.log('Name does not exist.');
-};
-
-const create = function (name) {
-  // The function should return a new item object with the following attributes:
-  // id - invoke cuid() to create a unique id
-  // name - the value of parameter name
-  // checked - defaults to false
-  return {
-    id: cuid(),
-    name: name,
-    checked: false
-  };
-};
-
-console.log(item);
+// console.log(item);
 // console.log(foo);
+
