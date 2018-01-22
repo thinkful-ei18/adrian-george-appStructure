@@ -1,9 +1,12 @@
-{/* <script type="text/javascript" src="scripts/store.js"></script> */}
-
 // eslint - disable - next - line no - unused - vars
+/* global cuid */
 
- const store = function () {
-    const foo = 'bar';
+'use strict';
+
+const store = (function () {
+  const foo = 'bar';
+
+  return {
     items: [
       { id: cuid(), name: 'apples', checked: false },
       { id: cuid(), name: 'oranges', checked: false },
@@ -13,14 +16,6 @@
     hideCheckedItems: false,
     searchTerm: ''
   };
-
-  return {
-    items,
-    hideCheckedItems,
-    searchTerm
-  };
-
-  // Return the object from your IIFE, with the items, hideCheckedItems, searchTerm exposed
 
 }() );
 
